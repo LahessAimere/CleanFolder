@@ -13,7 +13,7 @@ A script to keep the files on the computer well-organized by automatically.
 - Exécutables : ```.exe, .msi, .bat, .sh```
 
 ## Installation :
-Assurez-vous d'avoir Python installé sur votre système. Vous pouvez télécharger Python depuis  - [Awesome Readme Templates](https://www.python.org/downloads/).
+Assurez-vous d'avoir Python installé sur votre système. Vous pouvez télécharger Python depuis  - [python.org](https://www.python.org/downloads/).
 
 ## Prérequis :
 Aucune bibliothèque supplémentaire n'est nécessaire. Le script utilise les modules intégrés de Python : ```os, shutil, et sys```.
