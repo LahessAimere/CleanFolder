@@ -1,5 +1,5 @@
 # CleanFolder
-A script to keep the files on the computer well-organized by automatically.
+Un script pour garder les fichiers de l'ordinateur bien organisés en les triant automatiquement selon leur type (par exemple : images, documents, archives, exécutables).
 
 ## Fonctionnalités :
 - Trie automatiquement les fichiers dans des catégories telles que "Images", "Documents", "Archives", et "Exécutables".
