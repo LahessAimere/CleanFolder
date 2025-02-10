@@ -1,0 +1,6 @@
+Raccourcis:
+
+Win + Ctrl + D : Créer un nouveau bureau.
+Win + Ctrl + Flèche gauche : Passer au bureau précédent.
+Win + Ctrl + Flèche droite : Passer au bureau suivant.
+Win + Ctrl + F4 : Fermer le bureau actif.
