@@ -1,4 +1,6 @@
-# CleanFolder
+# CleanFolder 
+<img src="https://www.hebergeur-image.com/upload/91.168.77.68-67aa9a112ff33.png" width="90" />
+
 Un script pour garder les fichiers de l'ordinateur bien organisés en les triant automatiquement selon leur type (par exemple : images, documents, archives, exécutables).
 
 ## Fonctionnalités :
