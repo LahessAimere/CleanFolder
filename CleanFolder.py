@@ -26,13 +26,14 @@ def sort_files(directory):
     selon leur type (image, document, archive, etc.).
     """
     if not os.path.exists(directory):  # Vérifie si le dossier existe
-        print(f"Le dossier '{directory}' n'existe pas.")  # Si le dossier n'existe pas, on affiche un message
-        return
+        print(f"Le dossier '{directory}' n'existe pas.")
+        exit(1)
+    
+    if not os.path.isdir(directory):
+        print(f"Erreur: '{directory}' n'est pas un dossier valide.")
+        exit(1)
     
     TestTrie = os.path.basename(__file__)  # Récupère le nom du script
-    for file in os.listdir(directory):
-        file_path = os.path.join(directory, file)
-    
     # On parcourt tous les fichiers dans le dossier
     for file in os.listdir(directory):  # Liste tous les fichiers dans le dossier
         file_path = os.path.join(directory, file)  # Crée le chemin complet du fichier
@@ -47,8 +48,11 @@ def sort_files(directory):
                 os.makedirs(category_path)
             
             # Déplace le fichier dans le sous-dossier approprié
-            shutil.move(file_path, os.path.join(category_path, file))
-            print(f"{file} -> {category}/")  # Affiche un message pour dire où le fichier a été déplacé
+            try:
+                shutil.move(file_path, os.path.join(category_path, file))
+                print(f"{file} -> {category}/")  # Affiche un message pour dire où le fichier a été déplacé
+            except:
+                print(f"Erreur lors du déplacement de {file}")
 
 # Exécutée lorsque le script est lancé
 if __name__ == "__main__":
