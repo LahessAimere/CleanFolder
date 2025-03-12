@@ -7,6 +7,9 @@ A script to keep computer files well organized by automatically sorting them bas
 - Automatically sorts files into categories such as "Images," "Documents," "Archives," and "Executables."
 - Moves files into corresponding subfolders based on their extensions.
 - Creates subfolders if they do not already exist.
+- Ignores the script file itself, ensuring it won't be moved.
+- Ignores README files to avoid sorting them.
+- Supports both absolute paths and the current directory for easy use.
 
 ## Supported File Types :
 - Images : ```.jpg, .jpeg, .png, .gif, .bmp```
@@ -27,11 +30,16 @@ No additional libraries are needed. The script uses built-in Python modules : ``
 
 3. Navigate to the directory where the script is located using the ```cd``` command:
 
-```cd chemin/vers/le/script```
+```cd path/to/the/script```
 To run the script, provide the directory you want to organize as an argument. For example :
 
-```python nomDuFichier.py "C:/Users/User/Documents"```
+```python scriptName.py "C:/Users/User/Documents"```
 Replace "C:/Users/User/Documents" with the actual path of the directory you want to organize.
+
+Alternatively, if you're already in the directory where the script is located, you can just run:
+```python scriptName.py```
+- If you specify a directory path, the script will organize the files in that directory, moving them into corresponding subfolders like Images, Documents, Archives, etc.
+- If no directory is specified, the script will use the current directory where the script is located and organize its files.
 
 - The script will sort the files in the specified directory and create subfolders for each file type (e.g., "Images," "Documents," etc.).
 - Files will be moved into their corresponding subfolders based on their extensions.
@@ -45,6 +53,7 @@ Files will be moved into their respective subfolders (e.g., Images, Documents, A
 
 ## Notes :
 - The script ignores itself, so it will not move the script file into a subfolder.
+- README files (or any file containing "README" in their name) will be ignored during the sorting process.
 - If the specified directory does not exist, the script will display an error message.
 - You can modify the supported file types in the ```CATEGORIES``` dictionary if needed.
 

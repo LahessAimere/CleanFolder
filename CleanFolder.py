@@ -1,60 +1,60 @@
-import os  # Interagit avec le système de fichiers
-import shutil  # Déplace les fichiers
+import os  # Interacts with the file system
+import shutil  # Moves files
 import sys
 
 CATEGORIES = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp"],
     "Documents": [".pdf", ".docx", ".txt", ".md"],
     "Archives": [".zip", ".rar", ".7z", ".tar", ".gz"],
-    "Exécutables": [".exe", ".msi", ".bat", ".sh"]
+    "Executables": [".exe", ".msi", ".bat", ".sh"]
 }
 
 def get_category(extension):
     """
-    Cette fonction prend une extension de fichier (comme '.jpg') 
+    This function takes a file extension (like '.jpg')
 
-    Retourne la catégorie à laquelle elle appartient, par exemple: si c'est un fichier '.jpg', elle retournera "Images".
+    Returns the category to which it belongs, for example: if it's a '.jpg' file, it will return "Images".
     """
-    for category, extensions in CATEGORIES.items():  # On parcourt chaque catégorie et ses extensions
-        if extension.lower() in extensions:  # Si l'extension du fichier est dans la catégorie
-            return category  # Retourne le nom de la catégorie
-    return "Autres"  # Si l'extension ne correspond à rien, on la classe dans "Autres"
+    for category, extensions in CATEGORIES.items():  # Loop through each category and its extensions
+        if extension.lower() in extensions:  # If the file's extension is in the category
+            return category  # Return the category name
+    return "Others"  # If the extension doesn't match anything, classify it as "Others"
 
 def sort_files(directory):
     """
-    Cette fonction prend un dossier en entrée et trie les fichiers qui s'y trouvent dans les sous-dossiers
-    selon leur type (image, document, archive, etc.).
+    This function takes a directory as input and sorts the files within it into subfolders
+    based on their type (image, document, archive, etc.).
     """
-    if not os.path.exists(directory):  # Vérifie si le dossier existe
-        print(f"Le dossier '{directory}' n'existe pas.")
+    if not os.path.exists(directory):  # Check if the directory exists
+        print(f"The directory '{directory}' does not exist.")
         exit(1)
     
     if not os.path.isdir(directory):
-        print(f"Erreur: '{directory}' n'est pas un dossier valide.")
+        print(f"Error: '{directory}' is not a valid directory.")
         exit(1)
     
-    TestTrie = os.path.basename(__file__)  # Récupère le nom du script
-    # On parcourt tous les fichiers dans le dossier
-    for file in os.listdir(directory):  # Liste tous les fichiers dans le dossier
-        file_path = os.path.join(directory, file)  # Crée le chemin complet du fichier
+    CleanFolder = os.path.basename(__file__)  # Get the script's filename
+    # Loop through all files in the directory
+    for file in os.listdir(directory):  # List all files in the directory
+        file_path = os.path.join(directory, file)  # Create the full file path
         
-        if os.path.isfile(file_path) and file != TestTrie:  # Si c'est bien un fichier
-            _, ext = os.path.splitext(file)  # Sépare le nom du fichier de son extension
-            category = get_category(ext)  # On trouve la catégorie du fichier selon son extension
-            category_path = os.path.join(directory, category)  # Crée le chemin du sous-dossier pour cette catégorie
+        if os.path.isfile(file_path) and file != CleanFolder and "README" not in file:  # If it's a valid file
+            _, ext = os.path.splitext(file)  # Separate the file name from its extension
+            category = get_category(ext)  # Find the category of the file based on its extension
+            category_path = os.path.join(directory, category)  # Create the path for the subfolder of this category
             
-            # Si le sous-dossier n'existe pas encore, on le crée
+            # If the subfolder doesn't exist yet, create it
             if not os.path.exists(category_path):
                 os.makedirs(category_path)
             
-            # Déplace le fichier dans le sous-dossier approprié
+            # Move the file to the appropriate subfolder
             try:
                 shutil.move(file_path, os.path.join(category_path, file))
-                print(f"{file} -> {category}/")  # Affiche un message pour dire où le fichier a été déplacé
+                print(f"{file} -> {category}/")  # Print a message showing where the file was moved
             except:
-                print(f"Erreur lors du déplacement de {file}")
+                print(f"Error while moving {file}")
 
-# Exécutée lorsque le script est lancé
+# Executed when the script is run
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        sort_files(sys.argv[1])
+    directory = sys.argv[1] if len(sys.argv) == 2 else os.getcwd()
+    sort_files(directory)
